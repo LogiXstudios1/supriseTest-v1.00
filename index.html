@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Canım Annem</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #fddde6, #ffe6f2);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      transition: background 1s ease;
+    }
+
+    h1 {
+      font-size: 48px;
+      color: #d63384;
+      margin-bottom: 60px;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 30px;
+    }
+
+    button {
+      font-size: 24px;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    #evet {
+      background-color: #ff4fa2;
+      color: white;
+    }
+
+    #evet:hover {
+      background-color: #ff70b2;
+      transform: scale(1.1);
+    }
+
+    #hayir {
+      background-color: #f3f3f3;
+      color: #444;
+    }
+
+    #hayir:hover {
+      background-color: #ddd;
+      transform: scale(0.95);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .final {
+      font-size: 60px;
+      color: #e91e63;
+      animation: slideIn 1s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <h1>Beni Seviyor Musun?</h1>
+  <div class="buttons">
+    <button id="evet">Evet</button>
+    <button id="hayir">Hayır</button>
+  </div>
+
+  <script>
+    const evet = document.getElementById('evet');
+    const hayir = document.getElementById('hayir');
+    let hayirTik = 0;
+
+    hayir.addEventListener('click', () => {
+      hayirTik++;
+      evet.style.transform = `scale(${1 + hayirTik * 0.2})`;
+      hayir.style.transform = `scale(${1 - hayirTik * 0.15})`;
+      if (hayirTik >= 3) {
+        hayir.style.display = 'none';
+      }
+    });
+
+    evet.addEventListener('click', () => {
+      document.body.innerHTML = `
+        <div class="final">Canım Annem 💖</div>
+      `;
+      document.body.style.background = "linear-gradient(to bottom, #ffe0ec, #ffc1d9)";
+    });
+  </script>
+</body>
+</html>
